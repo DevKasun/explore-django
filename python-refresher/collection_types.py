@@ -7,7 +7,7 @@ sorted_list = sorted(set_example)
 # print(sorted_list)
 
 
-import sys
+# import sys
 
 # Memory comparison
 my_list = [i for i in range(1000)]      # Moderate memory
