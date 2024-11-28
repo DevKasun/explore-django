@@ -1,10 +1,10 @@
 users = [
-    (0, "Bob", "pswrd"),
-    (1, "Alex", "123456"),
-    (2, "Jack", "qwerty"),
-    (3, "Mike", "bnmghgh"),
-    (4, "Anne", "12334"),
-    (5, "Jessie", "pwd123"),
+    (1, "Bob", "pswrd"),
+    (2, "Alex", "123456"),
+    (3, "Jack", "qwerty"),
+    (4, "Mike", "bnmghgh"),
+    (5, "Anne", "12334"),
+    (6, "Jessie", "pwd123"),
 ]
 
 username_mapping = {user[1]: user for user in users}
@@ -14,25 +14,37 @@ def search_by_username(username):
     user_data = username_mapping.get(username)
     if user_data:
         return user_data
-    return "Username not found"
+    return "Username not found ❌"
 
-username_input = input("Enter username: ")
-result = search_by_username(username_input)
-print(result)
+# username_input = input("> Enter username: ")
+# result = search_by_username(username_input)
+# print(f"> {result}")
 
-print("------------------------------------------------------")
+# print("------------------------------------------------------")
 
 rockets_with_heights = [
-    (0, "Starship", 121),
-    (1, "Falcon 9", 70),
-    (2, "Ariane 5", 50),
-    (3, "Delta IV Heavy", 72),
-    (4, "Atlas V", 58),
-    (5, "Saturn V", 111),
-    (6, "Falcon Heavy", 70)
+    (1, "Starship", "SpaceX", 121),
+    (2, "Falcon 9", "SpaceX", 70),
+    (3, "Ariane 5", "Arianespace", 50),
+    (4, "Delta IV Heavy", "ULA", 72),
+    (5, "Atlas V", "ULA", 58),
+    (6, "Saturn V", "NASA", 111),
+    (7, "Falcon Heavy", "SpaceX", 70)
 ]
 
-rocket_mapping = {rockets_with_heights[1]: rocket for rocket in rockets_with_heights}
+rockets_map_by_company = {company[2] for company in rockets_with_heights}
 
-# rocket_name_input  = input("Enter rocket name: ")
-# rocket_data = rocket_mapping.get(rocket_name_input)
+print("List of space companies:")
+for company in rockets_map_by_company:
+    print(company)
+
+def search_by_company(company):
+    rockets = [rocket for rocket in rockets_with_heights if rocket[2] == company]
+    return rockets
+
+
+company_name_input = input("> Enter space company name: ")
+result2 = search_by_company(company_name_input)
+
+for rocket in result2:
+    print(f"| Rocket name: {rocket[1]} | Height: {rocket[3]} |")
