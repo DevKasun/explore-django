@@ -1,2 +1,32 @@
 .DS_Store
 /.ropeproject
+../.DS_Store
+.DS_Store
+
+
+# Django
+*.log
+*.pot
+*.pyc
+/__pycache__/
+db.sqlite3
+media
+local_settings.py
+
+# Environment
+.env
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+.DS_Store
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+EOF
