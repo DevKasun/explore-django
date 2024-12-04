@@ -1,11 +1,4 @@
 from django.http import HttpResponse
 
-'''
-In views we 
-'''
-
-def home(request):
-    return HttpResponse("Hello, Django!")
-
-def testpage(request):
-    return HttpResponse("This is a test page.")
+def home_view(request):
+    return HttpResponse("Home page")
