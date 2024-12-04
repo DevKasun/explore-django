@@ -1,11 +1,6 @@
-from django.http import HttpResponse
-
-'''
-In views we 
-'''
+from django.shortcuts import render
+from app.models import Article
 
 def home(request):
-    return HttpResponse("Hello, Django!")
-
-def testpage(request):
-    return HttpResponse("This is a test page.")
+    article = Article.objects.all()
+    return render(request, 'app/home.html', {'article': article})
