@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h1>Update article</h1>
-        <form action="POST">
+        <form method="POST">
             {% csrf_token %} {{ form.as_p }}
             <button type="submit">Update</button>
 	</body>
