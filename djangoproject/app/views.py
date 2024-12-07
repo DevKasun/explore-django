@@ -18,7 +18,7 @@ class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'status', 'content', 'word_column', 'twitter_post']
     success_url = reverse_lazy("home")
-    context_object_name = "articles"
+    context_object_name = "article"
     
 class ArticleDeleteView(DeleteView):
     template_name = 'app/article_delete.html'
