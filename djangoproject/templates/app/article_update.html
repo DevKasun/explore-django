@@ -1,8 +1,12 @@
 {% extends "app/base.html" %} {% block content %}
-<h1>Update article</h1>
+<h1>Edit article</h1>
+<p>{{article.word_column}} word{{ article.word_column | pluralize}}</p>
+<p>{{article.updated_at | date:"jS F Y" }}</p>
 <form method="POST">
 	{% csrf_token %} {{ form.as_p }}
 	<button type="submit">Update</button>
-	{% endblock content %}
 </form>
+
+<a href="{% url "home"%}">Back to list</a>
+<a href="{% url "delete_article" article.id %}">Delete article</a>
 {% endblock content %}
