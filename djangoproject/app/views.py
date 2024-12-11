@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Simply LoginRequiredMixin is used to restrict the access to the views to only authenticated users.
 # UserPassesTestMixin is used to restrict the access to the views to only the creator of the article.
+
 class ArticleListView(LoginRequiredMixin, ListView):
     template_name = "app/home.html"
     model =  Article
