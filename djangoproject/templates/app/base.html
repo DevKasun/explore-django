@@ -6,7 +6,23 @@
 		<title>Django Project</title>
 	</head>
 	<body>
-		<nav>Header</nav>
+		<nav>
+			<ul>
+				<li>
+					<a href={% url "home" %}>Articles</a>
+				</li>
+				<li>
+					{% if user.is_authenticated %}
+						<form method="POST" action={% url "logout" %}>
+							{%  csrf_token %}
+							<button type="submit">Log out</button>
+						</form>
+					{% else %}
+						<a href={% url "login" %}>Login</a>
+					{% endif %}
+				</li>
+			</ul>
+		</nav>
 		{% block content %} {% endblock content %}
 		<footer><p>2024 - Django Project</p></footer>
 	</body>
