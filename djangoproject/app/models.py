@@ -15,6 +15,9 @@ class UserProfile(AbstractUser):
     pass
 
 class Article(models.Model):
+    class Meta:
+        verbose_name = _("article")
+        verbose_name_plural = _("articles")
     title = models.CharField(_("title"),max_length=100)
     content = models.TextField(_("content"),blank=True, default="")
     word_column = models.IntegerField(_("word count"),blank=True, default="")

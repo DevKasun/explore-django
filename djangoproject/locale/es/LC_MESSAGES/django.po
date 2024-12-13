@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-12 16:57+0000\n"
+"POT-Creation-Date: 2024-12-13 05:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
-#: app/models.py:18
+
+#: app/models.py:19
+msgid "article"
+msgstr "Artículo"
+
+#: app/models.py:20
+msgid "articles"
+msgstr "Artículos"
+
+#: app/models.py:21
 msgid "title"
 msgstr "título"
 
-#: app/models.py:19
+#: app/models.py:22
 msgid "content"
 msgstr "contenido"
 
-#: app/models.py:20
+#: app/models.py:23
 msgid "word count"
 msgstr "recuento de palabras"
 
-#: app/models.py:21
+#: app/models.py:24
 msgid "twitter post"
 msgstr "publicación de Twitter"
 
-#: app/models.py:22
+#: app/models.py:26
 msgid "status"
 msgstr "estado"
 
-#: app/models.py:23
+#: app/models.py:31
 msgid "created at"
 msgstr "creado el"
 
-#: app/models.py:24
+#: app/models.py:32
 msgid "updated at"
 msgstr "actualizado el"
 
-#: app/models.py:29
+#: app/models.py:37
 msgid "creator"
 msgstr "creador"
