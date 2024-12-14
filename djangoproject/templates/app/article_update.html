@@ -10,3 +10,31 @@
 <a href="{% url "home"%}">Back to list</a>
 <a href="{% url "delete_article" article.id %}">Delete article</a>
 {% endblock content %}
+
+
+{% block page_js %}
+<script>
+	const contentmarkdown = new EasyMDE(
+		{
+			element: document.getElementById('id_content'), 
+			spellChecker: false,
+			status: true,
+			toolbar: true,
+			forceSync: true,
+			toolbar: [
+				{
+					name: "bold",
+					action: EasyMDE.toggleBold,
+					className: "fa fa-bold",
+					title: "Bold",
+				},
+				"|",
+				"italic",
+				"|",
+				"heading",		
+				"|",
+			]
+		}
+	);
+</script>
+{% endblock page_js %}
