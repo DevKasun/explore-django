@@ -17,7 +17,15 @@ class UserProfile(AbstractUser):
     objects = UserProfileManager()
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
- 
+    
+    @property
+    def articles_count(self):
+        return self.articles.count()
+    
+    @property
+    def written_words(self):
+        return self.articles.aggregate(models.Sum("word_column"))["word_column__sum"] or 0
+
 class Article(models.Model):
     class Meta:
         verbose_name = _("article")

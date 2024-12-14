@@ -1,4 +1,6 @@
-{% extends "app/base.html" %} {% block content %}
+{% extends "app/layouts/base_form.html" %} 
+
+{% block content %}
 <h1>Edit article</h1>
 <p>{{article.word_column}} word{{ article.word_column | pluralize}}</p>
 <p>{{article.updated_at | date:"jS F Y" }}</p>
