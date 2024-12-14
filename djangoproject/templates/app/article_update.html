@@ -1,4 +1,6 @@
-{% extends "app/base.html" %} {% block content %}
+{% extends "app/layouts/base_form.html" %} 
+
+{% block content %}
 <h1>Edit article</h1>
 <p>{{article.word_column}} word{{ article.word_column | pluralize}}</p>
 <p>{{article.updated_at | date:"jS F Y" }}</p>
@@ -10,31 +12,3 @@
 <a href="{% url "home"%}">Back to list</a>
 <a href="{% url "delete_article" article.id %}">Delete article</a>
 {% endblock content %}
-
-
-{% block page_js %}
-<script>
-	const contentmarkdown = new EasyMDE(
-		{
-			element: document.getElementById('id_content'), 
-			spellChecker: false,
-			status: true,
-			toolbar: true,
-			forceSync: true,
-			toolbar: [
-				{
-					name: "bold",
-					action: EasyMDE.toggleBold,
-					className: "fa fa-bold",
-					title: "Bold",
-				},
-				"|",
-				"italic",
-				"|",
-				"heading",		
-				"|",
-			]
-		}
-	);
-</script>
-{% endblock page_js %}
