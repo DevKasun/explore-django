@@ -8,4 +8,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', RedirectView.as_view(url="articles/")), # This will Redirect / to the articles page
     path('__debug__/', include('debug_toolbar.urls')),
+    path('__reload__/', include('django_browser_reload.urls')),
 ]
