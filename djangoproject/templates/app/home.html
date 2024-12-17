@@ -18,7 +18,12 @@
 	{% if articles %}
 		<ul>
 			{% for article in articles %}
-			<li><a href="{% url "update_article" article.id %}"> {{ article.title }} </a> with {{article.word_column}} word{{article.word_column | pluralize}}.</li>
+			<li>
+				<a href="{% url "update_article" article.id %}"> 
+				{{ article.title }} </a> 
+				with {{article.word_column}} 
+				word{{article.word_column | pluralize}}.
+			</li>
 			{% endfor %}
 		</ul>
 	{% else %}
