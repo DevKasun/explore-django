@@ -15,7 +15,7 @@
 		{% url 'home' as your_articles_url %}
 		{% url 'account_email' as change_email_url %}
 
-		<nav class="px-10 py-4 border-b border-gray-300 shadow-md text-clip">
+		<nav class="px-8 py-4 border-b border-gray-300 shadow-md text-clip">
 			<div class="flex justify-end items-center gap-4 max-w-7xl">
 				{% if user.is_authenticated %}
 
@@ -53,11 +53,13 @@
 			</div>
 		</nav>
 
-		{% block content %}
-		
-		{% endblock content %}
-
-		<footer><p>2024 - Django Project</p></footer>
+		<main>
+			<div class="max-w-7xl mx-auto p-8">
+			{% block content %}
+			
+			{% endblock content %}
+			</div>
+		</main>
 
 		{% block page_js %}
 
