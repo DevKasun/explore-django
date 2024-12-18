@@ -1,12 +1,13 @@
 {% extends "app/layouts/base_form.html" %} 
 
 {% block article_status %}
-	<h1>Edit article</h1>
 	<p>{{article.word_column}} word{{ article.word_column | pluralize}}</p>
-	<p>{{article.updated_at | date:"jS F Y" }}</p>
+	<p>Last edited on <strong>{{article.updated_at | date:"jS F Y" }}</strong></p>
 {% endblock article_status %}
 
 {% block buttons %}
-	<a href="{% url 'delete_article' article.id %}" >Delete article</a>
-	<button type="submit">Save</button>
+	<div class="py-6 flex justify-end items-center gap-4">
+		<a class="button danger" href="{% url 'delete_article' article.id %}" >Delete article</a>
+		<button class="button primary" type="submit">Save</button>
+	</div>
 {% endblock buttons %}
