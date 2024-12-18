@@ -1,9 +1,30 @@
 {% extends "app/base.html" %}
 
+{% load widget_tweaks %}
+
 {% block content %}
+
+<form method="POST">
+	{% csrf_token %}
+	
+	{% render_field form.title %}
+
+	{% block article_status %}
+	{% endblock article_status %}
+
+	{% render_field form.status %}
+	
+	{% render_field form.content %}
+
+	{% render_field form.twitter_post %}
+	
+	{% block buttons %}
+	{% endblock buttons %}
+</form>
+
 {% endblock content %}
 
-
+d
 {% block page_js %}
 <script>
 	const contentmarkdown = new EasyMDE(
