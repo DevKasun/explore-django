@@ -3,22 +3,34 @@
 {% load humanize %} 
 
 {% block content %}
-	<h1>Articles</h1>
+	<h1 class="title pb-4">Articles</h1>
 
 	{% comment %} in here when showing number of articles better to use cache to avoid performance issue {% endcomment %}
-	<p>
-		You have created {{ user.article_count | intcomma }} 
-		article{{ user.article_count | pluralize }} and 
-		written {{ user.written_words | intcomma}} 
-		word{{user.written_words | pluralize}}!
+	<p class="text-lg pb-6">
+		You have created <strong>{{ user.articles_count | intcomma }} 
+		article{{ user.articles_count | pluralize }}</strong> and 
+		written <strong>{{ user.written_words | intcomma}}
+		word{{user.written_words | pluralize}}</strong>!
 	</p>
 
-	<a href="{% url "create_article"%}">Create new article</a>
+	<a class="button primary inline-block w-full sm:w-auto mb-4" href="{% url "create_article"%}">Create new article</a>
+
+	<h2 class="subtitle pb-6">Your latest articles</h2>
 
 	{% if articles %}
 		<ul>
 			{% for article in articles %}
-			<li><a href="{% url "update_article" article.id %}"> {{ article.title }} </a> with {{article.word_column}} word{{article.word_column | pluralize}}.</li>
+			<li class="flex flex-col">
+				<div class="flex items-center gap-2"> 
+					<a class="text-2xl font-semibold flex items-center gap-1" href="{% url "update_article" article.id %}"> 
+					{{ article.title }} </a> 
+					<span class="bg-gray-300 rounded-md text-gray-800 px-3 capitalize">{{article.status}}</span>
+				</div>
+				<div>
+					{{article.word_column}} 
+					word{{article.word_column | pluralize}}
+				</div>
+			</li>
 			{% endfor %}
 		</ul>
 	{% else %}

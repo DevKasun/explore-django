@@ -85,3 +85,5 @@ doc/_build/
 # Django stuff
 *.pyc
 staticfiles/
+
+node_modules/

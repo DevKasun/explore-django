@@ -20,7 +20,7 @@ class UserProfile(AbstractUser):
     
     @property
     def articles_count(self):
-        return self.articles.count()
+        return self.articles.count() or 0
     
     @property
     def written_words(self):
