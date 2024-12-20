@@ -1,8 +1,12 @@
-{% extends "app/base.html" %} 
+{% extends "base.html" %} 
 {% comment %} This how load the extensions to a template ⬇️ {% endcomment %}
 {% load humanize %} 
 
-{% block content %}
+{% block head_title%}
+- Home
+{% endblock head_title %}
+
+{% block base_content %}
 	<h1 class="title pb-4">Articles</h1>
 
 	{% comment %} in here when showing number of articles better to use cache to avoid performance issue {% endcomment %}
@@ -36,4 +40,4 @@
 	{% else %}
 	<p>No articles right now.</p>
 	{% endif %}
-{% endblock content %}
+{% endblock base_content %}

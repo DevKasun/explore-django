@@ -1,9 +1,14 @@
-{% extends "app/base.html" %}
+{% extends "base.html" %}
 
 {% load widget_tweaks %}
 {% load allauth account %}
 
-{% block content %}
+
+{% block head_title%}
+- Sign up
+{% endblock head_title %}
+
+{% block base_content %}
 
 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-0 md:mt-16 items-start">
     <div class="col-span-3 pt-6 text-center md:text-left">
@@ -74,4 +79,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock base_content %}
