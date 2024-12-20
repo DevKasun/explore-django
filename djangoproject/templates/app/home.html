@@ -2,6 +2,10 @@
 {% comment %} This how load the extensions to a template ⬇️ {% endcomment %}
 {% load humanize %} 
 
+{% block head_title%}
+- Home
+{% endblock head_title %}
+
 {% block base_content %}
 	<h1 class="title pb-4">Articles</h1>
 
