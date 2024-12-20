@@ -28,7 +28,7 @@
 				<div class="flex items-center gap-2"> 
 					<a class="text-2xl font-semibold flex items-center gap-1" href="{% url "update_article" article.id %}"> 
 					{{ article.title }} </a> 
-					<span class="bg-gray-300 rounded-md text-gray-800 px-3 capitalize">{{article.status}}</span>
+					<span class="bg-gray-300 rounded-md text-gray-800 px-3 capitalize article-status-{{article.status}}">{{article.status}}</span>
 				</div>
 				<div>
 					{{article.word_column}} 
