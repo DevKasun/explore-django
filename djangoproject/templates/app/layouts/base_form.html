@@ -4,7 +4,12 @@
 
 {% block base_content %}
 
-<form method="POST">
+<form 
+	method="POST"
+	x-data="{
+		articleStatus: ''
+	}"
+>
 	{% csrf_token %}
 
 	<div>
@@ -13,7 +18,8 @@
 
 	<div class="py-6 flex items-center gap-8">
 		{% render_field form.category class="p-1 py-2 rounded-sm bg-emerald-200 text-xs border-none uppercase focus:outline-none" %}
-		{% render_field form.status class="p-1 py-2 rounded-sm bg-emerald-200 text-xs border-none uppercase focus:outline-none" %}
+		
+		{% render_field form.status class="p-1 py-2 font-semibold rounded-md text-xs border-none uppercase focus:outline-none" x-bind::class="`article-status-${articleStatus}`" x-model.fill="articleStatus" %}
 
 		{% block article_status %}
 
@@ -34,7 +40,6 @@
 
 {% endblock base_content %}
 
-d
 {% block page_js %}
 <script>
 	const contentmarkdown = new EasyMDE(
