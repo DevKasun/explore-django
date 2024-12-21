@@ -56,6 +56,16 @@
 
 		<main>
 			<div class="max-w-7xl mx-auto p-8 lg:p-16">
+
+				{% if messages %}
+				<ul class="flex flex-col items-center gap-4 mb-4">
+					{% for message in messages %}
+						<li class="w-fit relative py-2 px-8 rounded-md flash-meesage-{{ message.tags }}">{{ message }}</li>
+					{% endfor%}
+				</ul>
+
+				{% endif %}
+
 				{% block base_content %}
 				
 				{% endblock base_content %}
