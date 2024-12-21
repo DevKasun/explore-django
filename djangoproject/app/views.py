@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from app.models import Article
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 
 # Simply LoginRequiredMixin is used to restrict the access to the views to only authenticated users.
 # UserPassesTestMixin is used to restrict the access to the views to only the creator of the article.
@@ -24,6 +25,10 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
         form.instance.creator = self.request.user
         return super().form_valid(form)
     
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "Article created successfully")
+        return super().post(request, *args, **kwargs)
+    
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'app/article_update.html'
@@ -34,7 +39,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
     def test_func(self):
         return self.request.user == self.get_object().creator
-    
+
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'app/article_delete.html'
     model = Article
@@ -43,3 +48,12 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
     def test_func(self):
         return self.request.user == self.get_object().creator
+
+    def post(self, request, *args, **kwargs):
+        # short hand way to add messages
+        messages.error(request, "Article deleted successfully")
+        # we can add extra tags like this
+        # messages.error(request, "Article deleted successfully", extra_tags="delete-success")
+        # altertive long way is this
+        # messages.add_message(request, messages.ERROR, "Article deleted successfully", extra_tags="delete-success")
+        return super().post(request, *args, **kwargs)
