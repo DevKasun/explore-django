@@ -21,6 +21,23 @@
 
 	<h2 class="subtitle pb-6">Your latest articles</h2>
 
+	<form method="GET" class="flex gap-4 pb-6">
+		<input 
+			type="search" 
+			name="search" 
+			placeholder="Search articles" 
+			class="flex-1 p-2 text-base max-w-72 rounded-md border-2 border-gray-200 focus:ring-emerald-500 focus:outline-none focus:ring-0 focus:border-emerald-500"
+			value="{{ request.GET.search }}"
+		/>
+		<button type="submit" class="button secondary flex gap-2">
+			{% include 'svg/magnifier.svg' with class='w-6 h-6' %}
+			Search
+		</button>
+
+		<a href="{% url 'home' %}" class="button secondary">Clear search</a>
+
+	</form>
+
 	{% if articles %}
 		<ul>
 			{% for article in articles %}
@@ -37,7 +54,25 @@
 			</li>
 			{% endfor %}
 		</ul>
+
+		<div class="flex items-center justify-center gap-4 my-6">
+			{% if is_paginated %}
+				{% if page_obj.has_previous %}
+					<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
+						{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1 rotate-180" %}
+					</a>
+				{% endif %}
+				<span>page <strong>{{ page_obj.number }}</strong> of <strong>{{ paginator.num_pages }}</strong></span>
+				{% if page_obj.has_next %}
+					<a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
+						{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1" %}
+					</a>		
+				{% endif %}
+			{% endif %}
+		</div>
+
 	{% else %}
 	<p>No articles right now.</p>
 	{% endif %}
+
 {% endblock base_content %}
