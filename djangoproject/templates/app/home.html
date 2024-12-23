@@ -28,51 +28,59 @@
 			placeholder="Search articles" 
 			class="flex-1 p-2 text-base max-w-72 rounded-md border-2 border-gray-200 focus:ring-emerald-500 focus:outline-none focus:ring-0 focus:border-emerald-500"
 			value="{{ request.GET.search }}"
+			hx-get="{{ request.path }}"
+			hx-trigger="input changed delay:500ms, search"
+			hx-target=".article-results"
+			hx-select=".article-results"
 		/>
 		<button type="submit" class="button secondary flex gap-2">
 			{% include 'svg/magnifier.svg' with class='w-6 h-6' %}
 			Search
 		</button>
 
-		<a href="{% url 'home' %}" class="button secondary">Clear search</a>
+		<a href="{{ request.path }}" class="button secondary">Clear search</a>
 
 	</form>
 
-	{% if articles %}
-		<ul>
-			{% for article in articles %}
-			<li class="flex flex-col">
-				<div class="flex items-center gap-2"> 
-					<a class="text-2xl font-semibold flex items-center gap-1" href="{% url "update_article" article.id %}"> 
-					{{ article.title }} </a> 
-					<span class="bg-gray-300 rounded-md text-gray-800 px-3 capitalize article-status-{{article.status}}">{{article.status}}</span>
-				</div>
-				<div>
-					{{article.word_column}} 
-					word{{article.word_column | pluralize}}
-				</div>
-			</li>
-			{% endfor %}
-		</ul>
+	<div class="article-results">
 
-		<div class="flex items-center justify-center gap-4 my-6">
-			{% if is_paginated %}
-				{% if page_obj.has_previous %}
-					<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
-						{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1 rotate-180" %}
-					</a>
-				{% endif %}
-				<span>page <strong>{{ page_obj.number }}</strong> of <strong>{{ paginator.num_pages }}</strong></span>
-				{% if page_obj.has_next %}
-					<a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
-						{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1" %}
-					</a>		
-				{% endif %}
-			{% endif %}
-		</div>
+		{% if articles %}
+			<ul preload="mouseover">
+				{% for article in articles %}
+				<li class="flex flex-col">
+					<div class="flex items-center gap-2"> 
+						<a class="text-2xl font-semibold flex items-center gap-1" href="{% url "update_article" article.id %}"> 
+						{{ article.title }} </a> 
+						<span class="bg-gray-300 rounded-md text-gray-800 px-3 capitalize article-status-{{article.status}}">{{article.status}}</span>
+					</div>
+					<div>
+						{{article.word_column}} 
+						word{{article.word_column | pluralize}}
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
 
-	{% else %}
-	<p>No articles right now.</p>
-	{% endif %}
+			<div class="flex items-center justify-center gap-4 my-6">
+				{% if is_paginated %}
+					{% if page_obj.has_previous %}
+						<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
+							{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1 rotate-180" %}
+						</a>
+					{% endif %}
+					<span>page <strong>{{ page_obj.number }}</strong> of <strong>{{ paginator.num_pages }}</strong></span>
+					{% if page_obj.has_next %}
+						<a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">
+							{% include "svg/chevron.svg" with class="w-5 h-5 border border-gray-800 rounded-md p-1" %}
+						</a>		
+					{% endif %}
+				{% endif %}
+			</div>
+
+		{% else %}
+		<p>No articles right now.</p>
+		{% endif %}
+
+	</div>
 
 {% endblock base_content %}
